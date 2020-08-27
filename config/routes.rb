@@ -5,6 +5,4 @@ Rails.application.routes.draw do
 
   resources :room_messages
   resources :rooms
-
-  post "/google_assistant" => "google_assistant#conversation"
 end
