@@ -8,9 +8,9 @@ services:
       dockerfile: ./docker/app/DockerFile
     image: namthp99/chat-app_app:1.0
     # command: bundle exec puma -e production --pidfile /var/run/imp.pid
-    command: bundle exec rails s -e production -p 3000 -b '0.0.0.0'
-    ports:
-      - "3000:3000"
+    command: bundle exec rails s -e production
+    # ports:
+    #   - "3000:3000"
     environment:
       DATABASE_DEVELOPMENT_HOST: db
       RAILS_ENV: "development"
