@@ -59,3 +59,5 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'coffee-script-source', '~> 1.11', '>= 1.11.1'
 gem 'redis'
+
+gem 'webpacker'
