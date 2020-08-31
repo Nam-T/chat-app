@@ -1,4 +1,4 @@
-# gets the docker image of ruby 2.4.4 and lets us build on top of that
+# Gets the docker image of ruby 2.4.4 and lets us build on top of that
 FROM ruby:2.4.4
 
 # install rails dependencies
@@ -13,12 +13,8 @@ RUN apt-get update && apt-get install yarn
 ENV RAILS_ROOT /var/www/chat-app
 RUN mkdir -p $RAILS_ROOT
 
-# create a folder /chat-app in the docker container and go into that folder
+# Create a folder /chat-app in the docker container and go into that folder
 WORKDIR $RAILS_ROOT
-
-# Setting env up
-#ENV RAILS_ENV='production'
-#ENV RACK_ENV='production'
 
 # Copy the Gemfile and Gemfile.lock from app root directory into the /chat-app/ folder in the docker container
 COPY Gemfile Gemfile
@@ -26,14 +22,11 @@ COPY Gemfile.lock Gemfile.lock
 
 # Run bundle install to install gems inside the gemfile
 RUN gem install bundler --no-document
-# RUN gem install bundler -v 2.0.2
-#RUN bundle install"
+
 # Copy the whole app
 COPY . .
 RUN bundle install
-# RUN yarn install --check-files
-#RUN RAILS_ENV=production ./bin/webpack
-#RUN RAILS_ENV=production rails assets:precompile
 
+# EXPOSE
 EXPOSE 3000
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+CMD ["rails", "s", "-b", "0.0.0.0"]
